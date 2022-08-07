@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-BaseModel class that defines all common attributes/methods for other classes
+BaseModel is a class that defines all common attributes/methods for other classes
 """
 import cmd
 #import shlex
@@ -17,7 +17,7 @@ from re import search
 
 class HBNBCommand(cmd.Cmd):
     """
-        Summary: class that define the command interpreter:
+        Summary: Aclass that define the command interpreter:
     """
     prompt = "(hbnb) "
     list_classes = ["BaseModel", "User", "Place", "State", "City",
