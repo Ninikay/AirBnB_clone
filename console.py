@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-BaseModel class that defines all common attributes/methods for other classes
+BaseModel is a class that defines all common attributes/methods for other classes
 """
 import cmd
 from models.base_model import BaseModel
@@ -10,7 +10,7 @@ from re import search
 
 class HBNBCommand(cmd.Cmd):
     """
-        Summary: class that define the command interpreter:
+        Summary: Aclass that define the command interpreter:
     """
     prompt = "(hbnb) "
     list_classes = ["BaseModel", "User", "Place", "State", "City",
@@ -56,15 +56,15 @@ class HBNBCommand(cmd.Cmd):
         """
         args_list = args.split(" ")
         if args_list[0] == "":
-            print("** class name missing **")
+            print("** class name is missing **")
         elif args_list[0] not in HBNBCommand.list_classes:
-            print("** class doesn't exist **")
+            print("** The class doesn't exist **")
         elif len(args_list) < 2:
             print("** instance id missing **")
         else:
             """ We need to check if the 'id' exists, to do so we need to
             create id_object with the form Classname.id that is the key that
-            we will ask if is in Storge and retrieve the value for that key
+            we will ask if is in Storage and retrieve the value for that key
             """
             id_object = "{}.{}".format(args_list[0], args_list[1])
             if id_object not in storage.all():
