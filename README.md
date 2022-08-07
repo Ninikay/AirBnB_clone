@@ -10,6 +10,14 @@ This team project is part of the ALX Software Engineer program. It is an educati
 
 For this task a basic console was created using the Cmd Python module, to manage the objects of the whole project, being able to implement the methods create, show, update, all, and destroy to the existing classes and subclasses.
 
+## Functionalities of this command interpreter:
+
+* Create a new object (ex: a new User or a new Place)
+* Retrieve an object from a file, a database etc...
+* Do operations on objects (count, compute stats, etc...)
+* Update attributes of an object
+* Destroy an object
+
 ## File Storage
 
 The presented classes are stored in FileStorage class file. When the console is initialized, the console redirects an instance of FileStorage named storage. #Storage object is loaded or reloaded from any class instances stored in the JSON file file.json. Class instances are created, updated, or deleted and storage object registers changes intofile.json.
