@@ -13,6 +13,10 @@ For this task a basic console was created using the Cmd Python module, to manage
 ## Environment
 This project is interpreted/tested on Ubuntu 14.04 LTS using python3 (version 3.4.3)
 
+## Installation
+
+Access AirBnb directory: cd AirBnB_clone
+
 ## Functionalities of this command interpreter:
 
 * Create a new object (ex: a new User or a new Place)
