@@ -10,6 +10,9 @@ This team project is part of the ALX Software Engineer program. It is an educati
 
 For this task a basic console was created using the Cmd Python module, to manage the objects of the whole project, being able to implement the methods create, show, update, all, and destroy to the existing classes and subclasses.
 
+## Environment
+This project is interpreted/tested on Ubuntu 14.04 LTS using python3 (version 3.4.3)
+
 ## Functionalities of this command interpreter:
 
 * Create a new object (ex: a new User or a new Place)
@@ -52,7 +55,6 @@ $ echo "help" | ./console.py             (hbnb)                                 
 EOF  all  count  create  destroy  help  quit  show  update
 
 ## Tests
-
 
 All the code is tested with the unittest module. The test for the classes are in the test_models folder
 
