@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 """
-BaseModel is a class that defines all common attributes/methods for other classes
+BaseModel is a class that defines all
+common attributes/methods for other classes
 """
 import cmd
 from models.base_model import BaseModel
 from models import storage
 from re import search
+import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -117,6 +119,46 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             print("** class doesn't exist **")
+
+    def do_update(self, args):
+        """ Updates an instance based on the class name and id
+            by adding or updating attribute
+            (save the change into the JSON file).
+            Ex: $ update BaseModel 1234-1234-1234
+            email "aibnb@mail.com """
+
+        args_list = shlex.split(arg[:])
+        arg = arg.split(" ")
+        if len(args_list) == 0:
+            print("** class name missing **")
+        elif args_list[0] not in HBNBCommand.list_classes:
+            print("** class doesn't exist **")
+        elif len(args_list) < 2:
+            print("** instance id missing **")
+        elif len(args_list) < 3:
+            print("** attribute name missing **")
+        elif len(args_list) < 4:
+            print("** value missing **")
+        else:
+            "if the instance of the class name doesn’t exist for the id"
+            id_object = "{}.{}".format(args_list[0], args_list[1])
+            if id_object not in storage.all():
+                print("** no instance found **")
+            else:
+                dog = r"\d+\.\d+"
+                id_object = "{}.{}".format(args_list[0], args_list[1])
+                name_attr = args_list[2]
+                value = args_list[3]
+                """ Only “simple” arguments can be updated: string,
+                    integer and float. """
+                if '"' in arg[3]:
+                    pass
+                elif search(dog, arg[3]):
+                    value = float(value)
+                elif arg[3].isdigit():
+                    value = int(value)
+                setattr(storage.all()[id_object], name_attr, value)
+                storage.all()[id_object].save()
 
 
 if __name__ == "__main__":
