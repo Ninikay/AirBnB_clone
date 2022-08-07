@@ -53,6 +53,7 @@ EOF  all  count  create  destroy  help  quit  show  update
 
 ## Tests
 
+
 All the code is tested with the unittest module. The test for the classes are in the test_models folder
 
 ## Further information
@@ -64,3 +65,6 @@ For further information on python version, and documentation visit python.org
 Emmanuel Oguntade
 
 Nike Oni
+
+# License
+Public Domain. No copy write protection
