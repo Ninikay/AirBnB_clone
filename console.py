@@ -3,14 +3,7 @@
 BaseModel class that defines all common attributes/methods for other classes
 """
 import cmd
-#import shlex
 from models.base_model import BaseModel
-#from models.user import User
-#from models.place import Place
-#from models.state import State
-#from models.city import City
-#from models.amenity import Amenity
-#from models.review import Review
 from models import storage
 from re import search
 
@@ -83,6 +76,47 @@ class HBNBCommand(cmd.Cmd):
                 print(storage.all()[id_object])
 
     def do_destroy(self, args):
+        """
+        Usage: destroy <class name> <id>
+        pops the required entry from the file storage __objects
+        dictionary
+        """
+        args_list = args.split(" ")
+        if args_list[0] == "":
+            print("** class name missing **")
+        elif args_list[0] not in HBNBCommand.list_classes:
+            print("** class doesn't exist **")
+        elif len(args_list) < 2:
+            print("** instance id missing **")
+        else:
+            obj_key = "{}.{}".format(args_list[0], args_list[1])
+            if obj_key in storage.all():
+
+                storage.all().pop(obj_key)
+                storage.save()
+            else:
+                print("** no instance found **")
+
+    def do_all(self, args):
+        """ Prints all string representation of all instances based or not
+            on the class name
+        """
+        element_list = []
+        args_list = args.split()
+
+        if len(args_list) == 0:
+            for key, value in storage.all().items():
+                element_list.append(str(value))
+            print(element_list)
+
+        elif args_list[0] in HBNBCommand.list_classes:
+            for key, value in storage.all().items():
+                if value.__class__.__name__ == args_list[0]:
+                    element_list.append(str(value))
+            print(element_list)
+
+        else:
+            print("** class doesn't exist **")
 
 
 if __name__ == "__main__":
