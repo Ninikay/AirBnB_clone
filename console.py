@@ -63,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args_list = args.split(" ")
         if args_list[0] == "":
-            print("** class name missing **")
+            print("** class name is missing **")
         elif args_list[0] not in HBNBCommand.list_classes:
             print("** class doesn't exist **")
         elif len(args_list) < 2:
@@ -71,7 +71,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             """ We need to check if the 'id' exists, to do so we need to
             create id_object with the form Classname.id that is the key that
-            we will ask if is in Storge and retrieve the value for that key
+            we will ask if is in Storage and retrieve the value for that key
             """
             id_object = "{}.{}".format(args_list[0], args_list[1])
             if id_object not in storage.all():
