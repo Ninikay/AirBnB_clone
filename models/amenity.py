@@ -1,12 +1,14 @@
 #!/usr/bin/python3
-""" Amenity class inherits from BaseModel"""
-
+"""
+class Amenity that inherits from BaseModel
+"""
 from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
-    """Child of BaseModels with
-    Public attributes:
-    name: string - empty string
+    """
+        Summary: Definning the Amenity class that inherits from BaseModel
+        Public class attributes:
+            name string - empty string
     """
     name = ""
