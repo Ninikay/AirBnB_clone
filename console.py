@@ -167,6 +167,57 @@ class HBNBCommand(cmd.Cmd):
                 setattr(storage.all()[id_object], name_attr, value)
                 storage.all()[id_object].save()
 
+    def default(self, arg):
+        """Method called on an input line when the command prefix is
+        not recognized. If this method is not overridden, it prints an
+        error message and returns. """
+        # BaseModel show("440f0fd5-502f-4f46-bc09-6b2c1b156fa7")
+        args_list = arg.split(".", 1)
+        if args_list[0] in HBNBCommand.list_classes:  # BaseModel
+            method = args_list[1].split("(")  # show
+            # retrieve all instances of a class by using: <class name>.all()
+            if method[0] == "all":
+                return self.do_all(args_list[0])
+            # retrieve the number of instances of a class: <class name>.count()
+            elif method[0] == "count":
+                return self.do_count(args_list[0])
+            elif method[0] == "show":
+                id_show = args_list[1].split('"')
+                args_show = "{} {}".format(args_list[0], id_show[1])
+                return self.do_show(args_show)
+            elif method[0] == "destroy":
+                id_destroy = args_list[1].split('"')
+                args_destroy = "{} {}".format(args_list[0], id_destroy[1])
+                return self.do_destroy(args_destroy)
+            elif method[0] == "update":
+                part1 = method[1].replace(")", "")
+                check_dict = part1[:].split(", ")
+                if check_dict[1][0] is "{":
+                    class_id = check_dict[0].replace('"', "")
+                    dog = r"\d+\.\d+"
+                    for i in range(1, len(check_dict)):
+                        dict_parse = check_dict[i].replace("{", "", 1)
+                        dict_parse = dict_parse.replace("}", "")
+                        dict_parse = dict_parse.replace("'", "")
+                        dict_parse = dict_parse.split(": ")
+                        if '"' in dict_parse[1]:
+                            pass
+                        elif search(dog, dict_parse[1]):
+                            dict_parse[1] = float(dict_parse[1])
+                        elif dict_parse[1].isdigit():
+                            dict_parse[1] = int(dict_parse[1])
+                        args_update = "{} {} {} {}".format(args_list[0],
+                                                           class_id,
+                                                           dict_parse[0],
+                                                           dict_parse[1])
+                        self.do_update(args_update)
+                else:
+                    part2 = part1.replace('"', "", 4)
+                    part3 = part2.split(", ")
+                    args_update = "{} {} {} {}".format(args_list[0], part3[0],
+                                                       part3[1], part3[2])
+                    return self.do_update(args_update)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
