@@ -15,6 +15,7 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
+        """ Initialization function for the BaseModel class"""
 
         if kwargs != {}:
             kwargs["created_at"] = datetime.fromisoformat(
@@ -35,36 +36,21 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
+        """ Non formal representation of instance used for printing """
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__)
 
     def save(self):
+        """ Saves the instance object to json file"""
         d = datetime(1, 1, 1).now()
         self.updated_at = d
         models.storage.save()
 
     def to_dict(self):
+        """ Converts the instance object to dictionary objects"""
         my_dict = self.__dict__.copy()
         my_dict['__class__'] = self.__class__.__name__
         my_dict['created_at'] = self.created_at.isoformat()
         my_dict['updated_at'] = self.updated_at.isoformat()
 
         return my_dict
-
-
-if __name__ == "__main__":
-    from models import storage
-    from models.base_model import BaseModel
-
-    all_objs = storage.all()
-    print("-- Reloaded objects --")
-    for obj_id in all_objs.keys():
-        obj = all_objs[obj_id]
-        print(obj)
-
-    print("-- Create a new object --")
-    my_model = BaseModel()
-    my_model.name = "My_First_Model"
-    my_model.my_number = 89
-    my_model.save()
-    print(my_model)
