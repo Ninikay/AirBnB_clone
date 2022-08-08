@@ -4,7 +4,7 @@
 from models.base_model import BaseModel
 
 
-class State(BaseModel):
+class Review(BaseModel):
     """Child of BaseModels with
     Public attributes:
     place_id: string - empty string: it will be the Place.id
